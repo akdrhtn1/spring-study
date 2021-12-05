@@ -21,13 +21,28 @@ function indexFocus(){
 }
 
 function btnClick(){
+    var arty ={};
+
     $('#idValidate').on("click",function(){
-        let id = $('#id').val();
-        if(id===""){
-            alert("입력된 아이디가 없습니다.");
-        }else{
-            location.href="Validate.jsp?id="+id;
-        }
+        $("#join_form").serializeArray().map(function(x){arty[x.name] = x.value;});
+        console.log(arty);
+        $.ajax({
+            type : 'POST',
+            url : '/idCheck',
+            data : JSON.stringify(arty),
+            dataType : 'json',
+            contentType : 'application/json;charset=utf-8',
+            success : function(data){
+                if(!data){
+                    alert('중복된 아이디가 아닙니다.!!');
+                }else{
+                    alert('중복된 아이디 입니다.')
+                }
+            },
+            error: function(xhr, status, error){
+                alert(error, status, xhr);
+            }
+        });
     });
 
 
@@ -58,7 +73,7 @@ function validateAll(){
         }
 
         
-        $('#join_form').prop("action","insert.jsp").submit();
+        $('#join_form').prop("action","/userCreate").submit();
 
     });
      
