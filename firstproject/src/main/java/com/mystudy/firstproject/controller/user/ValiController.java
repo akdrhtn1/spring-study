@@ -1,7 +1,7 @@
 package com.mystudy.firstproject.controller.user;
 
-import com.mystudy.firstproject.domain.user.Member;
-import com.mystudy.firstproject.dto.user.UserForm;
+import com.mystudy.firstproject.domain.entity.user.Member;
+import com.mystudy.firstproject.domain.dto.user.UserForm;
 import com.mystudy.firstproject.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Slf4j
@@ -27,5 +29,19 @@ public class ValiController {
         log.info(form.toString());
         Optional<Member> memb  = userService.findByList(form.getId());
         return memb;
+    }
+
+    @PostMapping("/login")
+    public Optional<Member> login(@RequestBody UserForm form, HttpServletRequest request){
+        HttpSession session = request.getSession();
+
+        log.info(form.toString());
+
+
+        Optional<Member> member = userService.login(form.getId(),form.getPaswd1());
+        member.ifPresent((mem) -> {session.setAttribute("member",mem);});
+        log.info(member.toString());
+
+        return member;
     }
 }

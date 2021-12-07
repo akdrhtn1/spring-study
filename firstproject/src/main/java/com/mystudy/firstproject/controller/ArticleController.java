@@ -1,6 +1,6 @@
 package com.mystudy.firstproject.controller;
 
-import com.mystudy.firstproject.dto.ArticleForm;
+import com.mystudy.firstproject.domain.dto.ArticleForm;
 import com.mystudy.firstproject.domain.Article;
 import com.mystudy.firstproject.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;

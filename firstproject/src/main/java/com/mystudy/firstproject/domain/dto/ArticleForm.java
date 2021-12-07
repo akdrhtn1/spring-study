@@ -1,4 +1,4 @@
-package com.mystudy.firstproject.dto;
+package com.mystudy.firstproject.domain.dto;
 
 import com.mystudy.firstproject.domain.Article;
 import lombok.*;

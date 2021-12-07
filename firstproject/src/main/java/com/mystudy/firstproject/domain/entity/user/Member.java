@@ -1,4 +1,4 @@
-package com.mystudy.firstproject.domain.user;
+package com.mystudy.firstproject.domain.entity.user;
 
 import lombok.*;
 
@@ -15,8 +15,7 @@ public class Member {
     @Id
     private String id;
     @Column
-    private String paswd1;
-    private String paswd2;
+    private String passwd;
     private String name;
     private String cellPhone;
     private String btDate;
