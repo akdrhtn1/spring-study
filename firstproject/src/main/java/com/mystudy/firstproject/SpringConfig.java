@@ -1,8 +1,10 @@
 package com.mystudy.firstproject;
 
 import com.mystudy.firstproject.repository.ArticleRepository;
+import com.mystudy.firstproject.repository.board.BoardRepository;
 import com.mystudy.firstproject.repository.user.UserRepository;
 import com.mystudy.firstproject.service.ArticleService;
+import com.mystudy.firstproject.service.board.BoardService;
 import com.mystudy.firstproject.service.user.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,14 @@ public class SpringConfig {
 
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
+    private final BoardRepository boardRepository;
 
     @Autowired
-    public SpringConfig(ArticleRepository articleRepository, UserRepository userRepository) {
+    public SpringConfig(ArticleRepository articleRepository, UserRepository userRepository,
+                        BoardRepository boardRepository) {
         this.articleRepository = articleRepository;
         this.userRepository = userRepository;
+        this.boardRepository = boardRepository;
     }
 
     @Bean
@@ -28,6 +33,10 @@ public class SpringConfig {
 
     @Bean
     public UserService userService(){ return new UserService(userRepository);}
+
+    @Bean
+    public BoardService boardService(){return new BoardService(boardRepository);}
+
 
     @Bean
     public ModelMapper modelMapper(){

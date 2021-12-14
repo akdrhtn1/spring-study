@@ -32,14 +32,14 @@ public class ValiController {
     }
 
     @PostMapping("/login")
-    public Optional<Member> login(@RequestBody UserForm form, HttpServletRequest request){
-        HttpSession session = request.getSession();
+    public Optional<Member> login(@RequestBody UserForm form,HttpSession session) {
 
         log.info(form.toString());
 
 
         Optional<Member> member = userService.login(form.getId(),form.getPaswd1());
         member.ifPresent((mem) -> {session.setAttribute("member",mem);});
+
         log.info(member.toString());
 
         return member;
