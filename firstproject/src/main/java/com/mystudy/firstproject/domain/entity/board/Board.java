@@ -12,15 +12,9 @@ import javax.persistence.*;
 @Setter
 public class Board {
     @Id
-   // @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
-    private Long idx;
-    private String name;
-    private String email;
-    private String email2;
-    private String phone;
-    private String user_type;
-    private String any_type;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    //@GeneratedValue(strategy= GenerationType.SEQUENCE)
+    private Long id;
     private String title;
     @Column(length=1000)
     private String content;
