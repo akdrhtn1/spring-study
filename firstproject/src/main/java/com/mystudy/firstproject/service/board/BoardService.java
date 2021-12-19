@@ -40,4 +40,9 @@ public class BoardService {
         return boardRepository.findByTitleOrContent(title,content);
     }
     public void deleteBoard(long id){boardRepository.deleteById(id);}
+
+    //내용, 제목 찾기
+    public Page<Board> findByTitleOrContentContain(String title, String content,Pageable pageable){
+        return boardRepository.findByTitleContainingOrContentContaining(title,content,pageable);
+    }
 }

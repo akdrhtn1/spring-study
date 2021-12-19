@@ -28,7 +28,6 @@ public class UserController {
         log.info(form.toString());
 
         Member member = modelMapper.map(form, Member.class);
-        member.setPasswd(form.getPaswd1());
         String userId = userService.join(member);
 
         log.info(userId);

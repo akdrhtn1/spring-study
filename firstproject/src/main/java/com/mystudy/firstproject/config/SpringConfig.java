@@ -1,4 +1,4 @@
-package com.mystudy.firstproject;
+package com.mystudy.firstproject.config;
 
 import com.mystudy.firstproject.repository.ArticleRepository;
 import com.mystudy.firstproject.repository.board.BoardRepository;

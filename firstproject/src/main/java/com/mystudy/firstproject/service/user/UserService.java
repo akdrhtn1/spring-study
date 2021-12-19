@@ -15,7 +15,7 @@ public class UserService {
     }
     public String join(Member member){
         Member save = userRepository.save(member);
-        return save.getId();
+        return save.getUserName();
     }
     public Optional<Member> findByList(String id) {
         Optional<Member> option = userRepository.findById(id);

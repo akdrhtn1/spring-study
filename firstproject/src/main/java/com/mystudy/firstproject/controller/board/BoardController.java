@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Iterator;
 
 
 @Controller
@@ -37,12 +38,14 @@ public class BoardController {
     }
 
     @GetMapping("/list")
-    public String list(Model model,@PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC,size = 2) Pageable pageable){
-        Page<Board> boards = boardService.listAllPage(pageable);
+    public String list(Model model, @RequestParam(required = false, defaultValue = "") String searchText,
+                       @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC,size = 5) Pageable pageable) {
+        //Page<Board> boards = boardService.listAllPage(pageable);
+        Page<Board> boards = boardService.findByTitleOrContentContain(searchText,searchText,pageable);
         //현재 페이지 번호 갖고옴
         int startPage = Math.max(1, boards.getPageable().getPageNumber() -4);
         int endPage = Math.min(boards.getTotalPages(),boards.getPageable().getPageNumber() +4);
-        log.info(startPage + "" + endPage);
+
         model.addAttribute("startPage",startPage);
         model.addAttribute("endPage",endPage);
         model.addAttribute("boardList",boards);

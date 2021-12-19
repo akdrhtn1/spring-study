@@ -13,10 +13,13 @@ import javax.persistence.*;
 public class Member {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
     @Column
+    private String userName;
     private String passwd;
     private String name;
+    private boolean enabled;
     private String cellPhone;
     private String btDate;
     private String gender;

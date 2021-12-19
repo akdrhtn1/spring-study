@@ -1,5 +1,6 @@
 package com.mystudy.firstproject.domain.entity.board;
 
+import com.mystudy.firstproject.domain.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @ToString
 @Getter
 @Setter
-public class Board {
+public class Board extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     //@GeneratedValue(strategy= GenerationType.SEQUENCE)

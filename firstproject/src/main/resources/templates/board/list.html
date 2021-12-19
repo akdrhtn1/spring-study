@@ -19,7 +19,15 @@
     <div class="starter-template">
         <h1>게시판</h1>
         <div>총 건수 : <span th:text="${boardList.totalElements}"></span></div>
-
+        <form class="row g-3 d-flex justify-content-end" th:action="@{/board/list}" method="GET">
+            <div class="col-auto mb-2">
+                <label for="searchText" class="visually-hidden">검색</label>
+                <input type="text" class="form-control" id="searchText" name="searchText" th:value="${param.searchText}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-light mb-2">검색</button>
+            </div>
+        </form>
         <table class="table">
             <thead>
             <tr>
@@ -34,19 +42,20 @@
                 <th th:text="${board.id}">1</th>
                 <td> <a th:text="${board.title}" th:href="@{/board/form(id=${board.id})}">Mark</a> </td>
                 <td>관리자</td>
+                <td th:text="${board.modifiedDate}"></td>
             </tr>
             </tbody>
         </table>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item" th:classappend="${1 == boardList.pageable.pageNumber + 1} ? 'disabled'" >
-                    <a class="page-link" th:href="@{/board/list(page=${boardList.pageable.pageNumber-1})}">이전으로</a>
+                    <a class="page-link" th:href="@{/board/list(page=${boardList.pageable.pageNumber-1},searchText=${param.searchText})}">이전으로</a>
                 </li>
                 <li class="page-item" th:classappend="${i == boardList.pageable.pageNumber + 1} ? 'disabled'" th:each="i : ${#numbers.sequence(startPage, endPage)}">
-                    <a class="page-link" href="#" th:text="${i}" th:href="@{/board/list(page=${i - 1})}">1</a>
+                    <a class="page-link" href="#" th:text="${i}" th:href="@{/board/list(page=${i - 1},searchText=${param.searchText})}">1</a>
                 </li>
                 <li class="page-item" th:classappend="${boardList.totalPages == boardList.pageable.pageNumber + 1} ? 'disabled'" >
-                    <a class="page-link" href="#" th:href="@{/board/list(page=${boardList.pageable.pageNumber+1})}">다음으로</a>
+                    <a class="page-link" href="#" th:href="@{/board/list(page=${boardList.pageable.pageNumber+1},searchText=${param.searchText})}">다음으로</a>
                 </li>
             </ul>
         </nav>
