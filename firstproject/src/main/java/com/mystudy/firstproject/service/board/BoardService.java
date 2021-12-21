@@ -24,17 +24,11 @@ public class BoardService {
 
         return boardRepository.findAll();
     }
-    public Page<Board> listAllPage(Pageable pageable){
-        return boardRepository.findAll(pageable);
-    }
 
     public Optional<Board> findById(long id){
         return boardRepository.findById(id);
     }
 
-    public List<Board> findByTitle(String title){
-        return boardRepository.findByTitle(title);
-    }
 
     public List<Board> findByTitleOrContent(String title, String content){
         return boardRepository.findByTitleOrContent(title,content);

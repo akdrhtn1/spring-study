@@ -6,11 +6,11 @@ $(function(){
 });
 
 function indexFocus(){
-    $('#id').focusout(function(){
+    $('#username').focusout(function(){
         idValidate($(this).val());
     })
     
-    $('#passwd1').focusout(function(){
+    $('#password').focusout(function(){
         passwdValidate($(this).val());
     })
 
@@ -56,13 +56,13 @@ function validateAll(){
         //아이디가 검증 값이 오류일 경우
         if('success' !== ($('#idMsg>p').prop('class'))){
             alert('아이디를 확인해주세요');
-            $('#id').focus().val("");
+            $('#username').focus().val("");
             return false;
         }
         //비밀번호 검증 값이 오류일 경우
         if('success' !==  ($('#pswd1Msg>p').prop('class'))){
             alert('비밀번호를 확인해주세요');
-            $('#passwd1').focus().val("");
+            $('#password').focus().val("");
             return false;
         }
         //비밀번호2 검증 값이 오류일 경우
@@ -73,7 +73,7 @@ function validateAll(){
         }
 
         
-        $('#join_form').prop("action","/userCreate").submit();
+        $('#join_form').submit();
 
     });
      
@@ -103,7 +103,7 @@ function passwd2Validate(passWd2){
     if(passWd2 == ""){
         $('#pswd2Msg').html('<p class="valiDate">값을 입력해주세요 </p>');
     }
-    else if(passWd2 == $('#passwd1').val()){
+    else if(passWd2 == $('#password').val()){
         /* 패스워드1번 비밀번호 형식 오류시 메시지(클레스명이 validate일 경우 오류) */
         if($('#pswd1Msg>p').attr('class') == "valiDate"){
             $('#pswd2Msg').html('<p class="valiDate">형식 오류 입니다. </p>');    

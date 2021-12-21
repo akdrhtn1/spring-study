@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+<!-- 구글 로그인 -->
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- 네이버 로그인  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="css/starter-template.css" th:href="@{/css/starter-template.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!--폰트어섬추가 -->
+<!--  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" th:href="@{/css/login.css}" >
+<!--<script th:src="@{/js/login.js}"></script> -->
+<style>
+
+
+#llogin {
+	display:block;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 350px;
+    text-align: center;
+    font-weight: 600;
+	font-family: Arial, Sans-serif;
+	color: #015B28;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius:4px;
+}
+
+.out {
+	display:flex;
+	justify-content: center;
+	margin: 15px;
+}
+
+.logo {
+	margin: 0px 10px;
+}
+
+.wrap {
+	min-height: 810px;
+}
+#panel{
+    height: 300px;
+}
+
+
+</style>
+
+</head>
+
+
+
+
+
+<body>
+    <form th:action="@{/account/login}" method="post" id="frm">
+       
+       <div class="wrap" >
+ 
+            <div id="cont1">
+                <div id = "panel" class="panel panel-default">
+	                <div class="panel-heading">
+	                    로그인
+	                </div>
+	                <div class="panel-body">
+	                    <input type="text" id="username" class="input form-control" name="username" placeholder="ID" required>
+	                    <br>
+                        <br>
+	                      <input type="password" id="pwd" class="input form-control" name="password" placeholder="비밀번호" required>
+	                    <br>
+                        <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                            Invalid username and password.
+                        </div>
+                        <div th:if="${param.logout}" class="alert alert-primary" role="alert">
+                            You have been logged out.
+                        </div>
+
+	                </div>
+				</div>
+            <button type="submit" id="llogin" class="bbtn" value="Login" onclick="loginSub()">로그인</button>
+            <br>
+            <div class="out">
+
+
+
+         <br><br>
+            <div class="bottom-menu">
+                <a href="signUp.jsp">회원가입</a>
+                <a href="idFindMail.jsp">아이디 찾기</a>
+                <a href="pwFindMail.jsp">비밀번호 찾기</a>
+            </div>
+        </div>
+    </div>
+        <div id="naver_id_login"></div>
+   </form>
+</body>
+</html>

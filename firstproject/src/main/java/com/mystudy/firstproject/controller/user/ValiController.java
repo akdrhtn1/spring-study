@@ -27,7 +27,7 @@ public class ValiController {
     @PostMapping("/idCheck")
     public Optional<Member> idCheck(@RequestBody UserForm form){
         log.info(form.toString());
-        Optional<Member> memb  = userService.findByList(form.getUserName());
+        Optional<Member> memb  = userService.findByList(form.getUsername());
         return memb;
     }
 
@@ -37,7 +37,7 @@ public class ValiController {
         log.info(form.toString());
 
 
-        Optional<Member> member = userService.login(form.getUserName(),form.getPasswd());
+        Optional<Member> member = userService.login(form.getUsername(),form.getPassword());
         member.ifPresent((mem) -> {session.setAttribute("member",mem);});
 
         log.info(member.toString());

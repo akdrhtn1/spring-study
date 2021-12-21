@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
@@ -48,8 +50,9 @@ public class BoardApiController {
     }
 
     @GetMapping("/{id}")
-    Board one(@PathVariable long id){
-        return boardService.findById(id).orElse(null);
+    ResponseEntity<Board> one(@PathVariable long id){
+        Board board =  boardService.findById(id).orElse(null);
+        return new ResponseEntity<Board>(board, HttpStatus.OK);
     }
     @PutMapping("/{id}")
     Board replaceBoard(@RequestBody BoardForm newBoard, @PathVariable Long id){
